@@ -5,6 +5,7 @@ var suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
               "Seven", "Six", "Five", "Four", "Three", "Two"];
 var deck = [];
     playerHand = [];
+    dealerHand = [];
     gameOver  = true;
 
 
@@ -14,6 +15,16 @@ deck = initializeDeck(deck);
 
 
 //functions 
+
+function dealHand(deck,handlen){
+    let hand = []
+    for (let i=0;i<handlen;i++){
+        hand.push(deck.shift());
+    }
+    return hand;
+}
+
+
 function newCard(suit,value){
     this.suit = suit,
     this.value = value

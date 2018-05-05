@@ -24,7 +24,7 @@ const maxHandVal = 21;
 
 $(document).ready(function(){
 
-  let textArea = document.getElementById('text-area');
+  //let textArea = document.getElementById('text-area');
   //    newGameButton = document.getElementById("new-game-button");
   //    hitButton = document.getElementById("hit-button");
   //    stayButton = document.getElementById("stay-button");
@@ -148,21 +148,24 @@ $(document).ready(function(){
   }
 
   function gameStatus(){
-    textArea.innerText = 
+    $("#text-area").html(
+    //textArea.innerText = 
     'Dealer has:\n' +
     showHand(dealerHand) + '\n\n' +
     '(score: ' + getScore(dealerHand) + ')\n\n' +
     
     'Player has:\n' +
     showHand(playerHand) + '\n' +
-    '(score: ' + getScore(playerHand) + ')\n\n';
+    '(score: ' + getScore(playerHand) + ')\n\n');
     if (gameOver){
       //textArea.innerText += didPlayerWin() ? "You win!" : "Dealer wins :(";
       if (didPlayerWin()){
-        textArea.innerText+="You win!";
+        $("#text-area").append("You win!");
+        //textArea.innerText+="You win!";
       }
       else{
-        textArea.innerText+="Dealer wins :(";
+        $("#text-area").append("Dealer wins :(");
+        //textArea.innerText+="Dealer wins :(";
       }
       showStartGameButtons();
     }

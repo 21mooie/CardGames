@@ -36,6 +36,9 @@ $(document).ready(function(){
   var playerOverBoard; 
   var dealerOverBoard;
 
+
+  
+
   showStartGameButtons();
 
   // GAME DRIVERS

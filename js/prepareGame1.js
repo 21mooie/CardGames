@@ -1,31 +1,19 @@
 var deck1 = Deck();
-    $container = document.getElementById('container');
+    container = document.getElementById('container');
     playerContainer = document.getElementById('playerhand');
-deck1.mount($container);
+deck1.mount(container);
 
 
-//$(document.ready(function()
-//))
+//add css to make the player's hand closer to the bottom 
 
-//could use this for index page 
-// deck1.cards.forEach(function (card, i) {
-//     card.setSide(Math.random() < 0.5 ? 'front' : 'back');
-//     card.enableFlipping();
-//     card.enableDragging();
 
-//     // explode
-//     card.animateTo({
-//         delay: 1000 + i * 2, // wait 1 second + i * 2 msz
-//         duration: 500,
-//         ease: 'quartOut',
-
-//         x: Math.random() * window.innerWidth - window.innerWidth / 2,
-//         y: Math.random() * window.innerHeight - window.innerHeight / 2
-//     });
-// });
-var firstCard = deck1.cards[0];
+var playerCards = [deck1.cards[0],deck1.cards[1]];
 deck1.shuffle();
 
-firstCard.mount(playerContainer);
+playerCards.forEach( function(cards,i) {
+    cards.mount(playerContainer);
+    cards.enableFlipping();
+});
+//.mount(playerContainer);
 
-firstCard.enableFlipping();
+//firstCard.enableFlipping();

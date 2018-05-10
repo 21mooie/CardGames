@@ -1,0 +1,6 @@
+#playerhand{
+    display: block;
+    position: fixed;
+    top: calc(70% + 5rem);
+    left: 50%;
+}

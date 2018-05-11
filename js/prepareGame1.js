@@ -1,19 +1,35 @@
 var deck1 = Deck();
+    //container = $("#container");
     container = document.getElementById('container');
-    playerContainer = document.getElementById('playerhand');
+    playerContainer = document.getElementById('playerHand');
+    dealerContainer = document.getElementById('dealerHand')
 deck1.mount(container);
 
-
-//add css to make the player's hand closer to the bottom 
-
-
-var playerCards = [deck1.cards[0],deck1.cards[1]];
 deck1.shuffle();
+var playerHand = [deck1.cards.pop(),deck1.cards.pop()];
 
-playerCards.forEach( function(cards,i) {
+var dealerHand = [deck1.cards.pop(),deck1.cards.pop()];
+
+playerHand.forEach( function(cards,i) {
+    cards.enableDragging();
     cards.mount(playerContainer);
-    cards.enableFlipping();
+    
+    cards.setSide('front');
 });
-//.mount(playerContainer);
 
-//firstCard.enableFlipping();
+dealerHand.forEach( function(cards,i) {
+    // cards.enableFlipping();
+    cards.enableDragging();
+    cards.mount(dealerContainer);
+});
+dealerHand[0].setSide('front');
+
+
+container.addEventListener('click', function(){
+    console.log("hi i clicked the deck");
+    var x = deck1.cards.pop();
+    dealerHand.push(x);
+    x.mount(playerContainer)
+    cards.enableDragging();
+    cards.setSide('front');
+});

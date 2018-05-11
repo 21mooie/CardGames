@@ -1,6 +1,13 @@
-#playerhand{
+#playerHand{
     display: block;
     position: fixed;
     top: calc(70% + 5rem);
+    left: 50%;
+}
+
+#dealerHand{
+    display: block;
+    position: fixed;
+    top: calc(10% + 2rem);
     left: 50%;
 }

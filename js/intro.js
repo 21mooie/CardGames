@@ -4,8 +4,14 @@ deck.mount($container);
 deck.shuffle();
 
 //could use this for index page 
-deck.cards.forEach(function (card, i) {
-    card.setSide(Math.random() < 0.5 ? 'front' : 'back');
+//deck.cards.forEach(function (card, i) {
+var card;
+for (let i=0;i<deck.cards.length;i++){
+    card = deck.cards[i];
+    //console.log(i + " " + card.suit + " " + card.rank);
+    if (i<deck.cards.length-1){
+        card.setSide(Math.random() < 0.5 ? 'front' : 'back');
+    }
     card.enableFlipping();
     card.enableDragging();
 
@@ -18,4 +24,4 @@ deck.cards.forEach(function (card, i) {
         x: Math.random() * window.innerWidth - window.innerWidth / 2,
         y: Math.random() * window.innerHeight - window.innerHeight / 2
     });
-});
+};

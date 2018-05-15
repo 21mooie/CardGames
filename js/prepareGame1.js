@@ -28,8 +28,8 @@ dealerHand[0].setSide('front');
 container.addEventListener('click', function(){
     console.log("hi i clicked the deck");
     var x = deck1.cards.pop();
-    dealerHand.push(x);
+    playerHand.push(x);
     x.mount(playerContainer)
-    cards.enableDragging();
-    cards.setSide('front');
+    x.enableDragging();
+    x.setSide('front');
 });

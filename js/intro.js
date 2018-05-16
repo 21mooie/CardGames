@@ -1,10 +1,3 @@
-var deck = Deck();
-    $container = document.getElementById('container');
-deck.mount($container);
-deck.shuffle();
-
-//could use this for index page 
-//deck.cards.forEach(function (card, i) {
 var card;
 for (let i=0;i<deck.cards.length;i++){
     card = deck.cards[i];

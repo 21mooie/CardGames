@@ -1,10 +1,10 @@
 var card;
-for (let i=0;i<deck.cards.length;i++){
+for (let i=0;i<numCards(deck);i++){
     card = deck.cards[i];
-    //console.log(i + " " + card.suit + " " + card.rank);
-    if (i<deck.cards.length-1){
+    if (i<numCards(deck)-1){ //notTopCard
         card.setSide(Math.random() < 0.5 ? 'front' : 'back');
     }
+    console.log(card.side);
     card.enableFlipping();
     card.enableDragging();
 

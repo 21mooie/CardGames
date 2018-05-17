@@ -1,8 +1,30 @@
 var assert = chai.assert;
 
 describe('Deck', function(){
+    var deck1;
+    before(function() {
+        deck1=Deck();
+    });
     it(' should have 52 cards.', function(){
-        assert.equal(deck.cards.length,52,'Deck has ' + deck.length + ' cards.');
+        assert.equal(numCards(deck1),52,'Deck has ' + deck1.length + ' cards.');
+    });
+    it('will return top card in deck without removing it.', function(){
+        var cardOnTop = deck1.cards[deck1.cards.length-1];
+        var cardOnTopFunc = topCard(deck1);
+        assert.equal(cardOnTop,cardOnTopFunc,'Top cards not the same investigate further ' + cardOnTop + ' ' + cardOnTopFunc + '.');
+    });
+    it(' will be able to draw top card from deck.', function(){
+        var cardOnTop = topCard(deck1);
+        var drawnCard = drawCard(deck1);
+        assert.equal(cardOnTop,drawnCard,'Top card and drawn card were not equal ' + cardOnTop + ' ' + drawnCard);
+        assert.equal(numCards(deck1),51,"Number of cards in deck should have gone to 51 but it is actually " + numCards(deck) + '.');
+    });
+    it(' will validate when it is empty.', function(){
+        assert.equal(isEmpty(deck1),false,'Deck incorrectly thinks it is empty.');
+        while(numCards(deck1)>0){
+            drawCard(deck1);
+        }
+        assert.equal(isEmpty(deck1),true,'Deck incorrectly think it is not empty.');
     });
 });
 
@@ -12,15 +34,27 @@ describe('Container', function(){
     });
 });
 
-describe('Player hand', function(){
-    it(' should be empty.', function(){
-        assert.equal(playerHand.length,0,'playerHand has cards within it.');
-    });
-});
+// describe('Player hand', function(){
+//     var deck1;
+//     var playerHand1;
+//     before(function() { 
+//         deck1=Deck();
+//         playerHand1= new Hand();
+//     });
+//     it(' should be empty.', function(){
+//         assert.equal(numCards(playerHand),0,'playerHand has cards within it.');
+//     });
+//     it(' will be able to add card to its hand.', function() {
+//         var top = topCard(deck1);
+//         var status = playerHand1.draw(deck1);
+//         assert.equal(topCard(playerHand1),top,"Player did not take card from top of deck.");
+//         assert.equal(status,true,'Draw card was not successful.');
+//     });
+// });
 
 
 describe('Dealer hand', function(){
     it(' should be empty.', function(){
-        assert.equal(dealerHand.length,0,'delearHand has cards within it.');
+        assert.equal(numCards(dealerHand),0,'delearHand has cards within it.');
     });
 });

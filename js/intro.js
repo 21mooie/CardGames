@@ -4,7 +4,7 @@ for (let i=0;i<numCards(deck);i++){
     if (i<numCards(deck)-1){ //notTopCard
         card.setSide(Math.random() < 0.5 ? 'front' : 'back');
     }
-    console.log(card.side);
+    
     card.enableFlipping();
     card.enableDragging();
 

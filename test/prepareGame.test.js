@@ -34,23 +34,27 @@ describe('Container', function(){
     });
 });
 
-// describe('Player hand', function(){
-//     var deck1;
-//     var playerHand1;
-//     before(function() { 
-//         deck1=Deck();
-//         playerHand1= new Hand();
-//     });
-//     it(' should be empty.', function(){
-//         assert.equal(numCards(playerHand),0,'playerHand has cards within it.');
-//     });
-//     it(' will be able to add card to its hand.', function() {
-//         var top = topCard(deck1);
-//         var status = playerHand1.draw(deck1);
-//         assert.equal(topCard(playerHand1),top,"Player did not take card from top of deck.");
-//         assert.equal(status,true,'Draw card was not successful.');
-//     });
-// });
+describe('Player hand', function(){
+    var deck1;
+    var playerHand1;
+    before(function() { 
+        deck1=Deck();
+        deck1.shuffle();
+        playerHand1= new Hand();
+    });
+    it(' should be empty.', function(){
+        assert.equal(numCards(playerHand),0,'playerHand has cards within it.');
+    });
+    it(' will be able to add card to its hand.', function() {
+        var top = topCard(deck1);
+        var status = playerHand1.draw(deck1);
+        
+        assert.equal(topCard(playerHand1),top,"Player did not take card from top of deck.");
+        assert.equal(status,true,'Draw card was not successful.');
+        assert.equal(numCards(deck1),51,"Deck size did not reduce by card drawn");
+        assert.notEqual(topCard(deck1),topCard(playerHand1),"Top card was not removed from deck for draw");
+    });
+});
 
 
 describe('Dealer hand', function(){

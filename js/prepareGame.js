@@ -1,7 +1,9 @@
 var deck = Deck();
     playerHand = new Hand();
     dealerHand = new Hand();
-    container = document.getElementById('container');
+    mainDeckContainer = document.getElementById('container');
+    playerContainer = document.getElementById('playerContainer');
+    dealerContainer = document.getElementById('dealerContainer');
 
 function Hand(){
     this.cards = [];

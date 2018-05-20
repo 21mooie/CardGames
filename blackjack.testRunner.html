@@ -16,11 +16,17 @@
     <script src="node_modules/deck-of-cards/dist/deck.js"></script>
 
     <script src="js/prepareGame.js"></script>
-    <script src="test/prepareGame.test.js"></script>
     
-    <script src="js/intro.js"></script>
-    <script src="test/intro.test.js"></script>
     <!-- load your test files here -->
+
+    <div id="playerHand"></div>
+    <div id="dealerHand"></div>
+    <button id="new-game-button">New Game!</button>
+    <button id="hit-button">Hit!</button>
+    <button id="stay-button">Stay</button>
+    <button id="return-button"> <a href="index.html">Return to Game Select</a></button>
+    <script src="js/blackjack.js"></script>
+    <script src="test/blackjack.test.js"></script>
     
     <script>
       mocha.run();

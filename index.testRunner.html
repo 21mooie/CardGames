@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css">
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>mocha.setup('bdd')</script>
+
+    <!-- load code you want to test here -->
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="node_modules/deck-of-cards/dist/deck.js"></script>
+
+    <script src="js/prepareGame.js"></script>
+    <script src="test/prepareGame.test.js"></script>
+    
+    <script src="js/intro.js"></script>
+    <script src="test/intro.test.js"></script>
+    <!-- load your test files here -->
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

@@ -54,6 +54,18 @@ describe('Player hand', function(){
         assert.equal(numCards(deck1),51,"Deck size did not reduce by card drawn");
         assert.notEqual(topCard(deck1),topCard(playerHand1),"Top card was not removed from deck for draw");
     });
+    it(' will not be able to add card when deck is empty.', function () {
+        var handCount = numCards(playerHand1);
+        while(numCards(deck1)>0){
+            drawCard(deck1);
+        }
+        var status = playerHand1.draw(deck1);
+
+        assert.equal(status,false,'Draw occurred when it should not have.');
+        assert.equal(numCards(deck1),0,"Deck is not empty as it should.");
+        assert.equal(handCount,numCards(playerHand1),"Hand changed size after draw.");
+        
+    })
 });
 
 

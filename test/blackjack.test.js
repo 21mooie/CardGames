@@ -1,3 +1,5 @@
+'use strict;'
+
 var assert = chai.assert;
 describe('UpdateGameButtons', function (){
     it(' should change on screen buttons once game starts.', function(){

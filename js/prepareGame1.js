@@ -1,3 +1,5 @@
+'use strict;'
+
 var deck1 = Deck();
     //container = $("#container");
     container = document.getElementById('container');

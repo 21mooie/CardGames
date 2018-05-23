@@ -1,3 +1,5 @@
+'use strict;'
+
 var deck = Deck();
     playerHand = new Hand();
     dealerHand = new Hand();

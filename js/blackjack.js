@@ -15,6 +15,8 @@
 
 */
 
+'use strict;'
+
 const maxHandSize = 5;
       maxHandVal = 21;
 

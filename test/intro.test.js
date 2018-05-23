@@ -1,3 +1,5 @@
+'use strict;'
+
 var assert = chai.assert;
 describe('Top card', function(){
     it(' is face down.', function(){

@@ -1,3 +1,5 @@
+'use strict;'
+
 var card;
 for (let i=0;i<numCards(deck);i++){
     card = deck.cards[i];

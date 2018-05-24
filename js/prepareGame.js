@@ -31,6 +31,10 @@ function drawCard(Deck) {return Deck.cards.pop();}
 
 function isEmpty(Deck) {return numCards(Deck)===0;}
 
+function mountHand(displayContainer){
+    
+}
+
 
 
 

@@ -27,19 +27,22 @@ var inGame=true;
 
 $(document).ready(function(){
     updateGameButtons(inGame);
+    dealerHand.draw(deck);
+    dealerHand.mountHand(dealerContainer,'front');
+    dealerHand.draw(deck);
+    dealerHand.mountHand(dealerContainer,'front');
+
 
     $("#return-button").click(function (){  
         gameOver=true;
-        dealerHand=[];
-        playerHand=[];
     });
 
     $('#container').click( function (){
-        console.log('clicked deck');
         playerHand.draw(deck);
-        console.log(playerHand.cards[0].suit + " " + playerHand.cards[0].rank + playerHand.cards.length);
         playerHand.mountHand(playerContainer,'front');
     });
+
+
 
 
     
@@ -48,12 +51,12 @@ $(document).ready(function(){
 function updateGameButtons(inGame){
     if (inGame){
         $('#new-game-button').hide();
-        $('#hit-button').show();
+        // $('#hit-button').show();
         $('#stay-button').show();
     }
     else{
         $('#new-game-button').show();
-        $('#hit-button').hide();
+        // $('#hit-button').hide();
         $('#stay-button').hide();
     }
 }

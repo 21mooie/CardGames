@@ -68,6 +68,10 @@ describe('Player hand', function(){
         assert.equal(handCount,numCards(playerHand1),"Hand changed size after draw.");
         
     })
+    it (' will be able to mount cards to the screen.', function(){
+        playerHand1.mountHand(playerContainer,'front');
+        assert.equal(numCards(playerHand1),$('#playerHand').children().length,"The number of cards aren't equal to the DOM.")
+    })
 });
 
 

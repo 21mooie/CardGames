@@ -4,8 +4,8 @@ var deck = Deck();
     playerHand = new Hand();
     dealerHand = new Hand();
     mainDeckContainer = document.getElementById('container');
-    playerContainer = document.getElementById('playerContainer');
-    dealerContainer = document.getElementById('dealerContainer');
+    playerContainer = document.getElementById('playerHand');
+    dealerContainer = document.getElementById('dealerHand');
 
 function Hand(){
     this.cards = [];
@@ -17,6 +17,14 @@ function Hand(){
             this.cards.push(drawCard(Deck));
             return true;
         }
+    }
+
+    this.mountHand = function(displayContainer,side){
+        this.cards.forEach( function(card,err) {
+            card.mount(displayContainer);
+            card.setSide(side);
+            card.enableDragging();
+        });
     }
 };
 
@@ -30,10 +38,6 @@ function topCard(Deck) {return Deck.cards[numCards(Deck)-1];}
 function drawCard(Deck) {return Deck.cards.pop();}
 
 function isEmpty(Deck) {return numCards(Deck)===0;}
-
-function mountHand(displayContainer){
-    
-}
 
 
 

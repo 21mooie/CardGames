@@ -37,7 +37,8 @@ $(document).ready(function(){
     $('#container').click( function (){
         console.log('clicked deck');
         playerHand.draw(deck);
-        playerHand.mountHand(playerContainer)
+        console.log(playerHand.cards[0].suit + " " + playerHand.cards[0].rank + playerHand.cards.length);
+        playerHand.mountHand(playerContainer,'front');
     });
 
 

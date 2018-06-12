@@ -40,6 +40,7 @@ $(document).ready(function(){
     $('#container').click( function (){
         playerHand.draw(deck);
         playerHand.mountHand(playerContainer,'front');
+        console.log(handVal(playerHand));
     });
 
 
@@ -59,4 +60,12 @@ function updateGameButtons(inGame){
         // $('#hit-button').hide();
         $('#stay-button').hide();
     }
+}
+
+function handVal(Hand){
+    var handValue = 0;
+    Hand.cards.forEach(element => {
+        handValue += element.rank;
+    });
+    return handValue;
 }

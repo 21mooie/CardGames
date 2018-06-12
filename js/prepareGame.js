@@ -19,7 +19,7 @@ function Hand(){
         }
     }
 
-    this.mountHand = function(displayContainer,side){
+    this.mountHand = function(displayContainer,side){ 
         this.cards.forEach( function(card,err) {
             card.mount(displayContainer);
             card.setSide(side);

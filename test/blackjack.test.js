@@ -39,6 +39,6 @@ describe('cardVal ', function(){
         hand = new Hand();
     })
     it('should calculate the proper value of this card given this hand.', function(){
-        assert.equal(cardVal(card.rank),10,'The value of this card is ' + card.rank + ' but it should be 10.');
+        assert.equal(cardVal(card.rank), 10, 'The value of this card is ' + card.rank + ' but it should be 10.');
     })
 })

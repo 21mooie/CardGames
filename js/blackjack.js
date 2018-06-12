@@ -40,13 +40,8 @@ $(document).ready(function(){
     $('#container').click( function (){
         playerHand.draw(deck);
         playerHand.mountHand(playerContainer,'front');
-        console.log(handVal(playerHand));
-    });
-
-
-
-
-    
+        handVal(playerHand);
+    });   
 });
 
 function updateGameButtons(inGame){

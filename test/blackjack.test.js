@@ -30,3 +30,15 @@ describe('handVal ', function (){
         assert.isAtMost(handVal(hand), hand.cards[0].rank,'The value of the hand ' + handVal(hand) + ' and the value of the card ' + hand.cards[0].rank + ' are equal.');
     })
 });
+
+describe('cardVal ', function(){
+    var hand;
+    var card = {};
+    before(function(){
+        card.rank = 11;
+        hand = new Hand();
+    })
+    it('should calculate the proper value of this card given this hand.', function(){
+        assert.equal(cardVal(card.rank),10,'The value of this card is ' + card.rank + ' but it should be 10.');
+    })
+})

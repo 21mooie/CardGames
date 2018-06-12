@@ -64,8 +64,34 @@ function updateGameButtons(inGame){
 
 function handVal(Hand){
     var handValue = 0;
+    var aceCount = 0;
     Hand.cards.forEach(element => {
-        handValue += element.rank;
+        if (element.rank==1){
+            aceCount+=1;
+        }
+        handValue += cardVal(element.rank);
     });
+    while (aceCount>0){
+        if (handValue + 10 > maxHandVal){
+            break;
+        }
+        handValue+=10;
+        aceCount--;
+    }
     return handValue;
+}
+
+function cardVal(valueOfCard){
+    var val;
+    switch(valueOfCard){
+        case 11:
+        case 12:   
+        case 13:
+            val = 10;
+            break;
+        default:
+            val = valueOfCard;
+            break;
+    }    
+    return val;
 }

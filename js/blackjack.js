@@ -24,13 +24,21 @@ const maxHandSize = 5;
 
 var inGame=true;
     gameOver=false;
+    playerWin=false;
 
 $(document).ready(function(){
     updateGameButtons(inGame);
-    dealerHand.draw(deck);
-    dealerHand.mountHand(dealerContainer,'front');
-    dealerHand.draw(deck);
-    dealerHand.mountHand(dealerContainer,'front');
+    startGame();
+    gameStatus();
+
+    if (handVal(dealerHand) === maxHandVal){
+        gameOver=true;
+        endGame('Dealer got blackjack.');
+    }
+
+    if (handVal(playerHand) === maxHandVal){
+        endGame();
+    }
 
 
     $("#return-button").click(function (){  
@@ -38,10 +46,45 @@ $(document).ready(function(){
     });
 
     $('#container').click( function (){
-        playerHand.draw(deck);
-        playerHand.mountHand(playerContainer,'front');
-        handVal(playerHand);
-    });   
+        if(!gameOver){
+            playerHand.draw(deck);
+            playerHand.mountHand(playerContainer,'front');
+            gameStatus();
+            if (handVal(playerHand)>maxHandVal){
+                gameOver=true;
+                endGame('you busted.');
+            }
+            else if (handVal(playerHand)===maxHandVal){
+                endGame();
+            }
+        }
+    });
+    
+    $('#stay-button').click(function (){
+        endGame();
+    });
+
+    $('#new-game-button').click(function (){
+        gameOver = false;
+        // var hands = [playerHand,dealerHand];
+        // var containers = [playerContainer,dealerContainer]
+        // addCardsToDeck(deck,hands,containers);
+        while (!isEmpty(playerHand)){
+            deck.cards.push(drawCard(playerHand));
+        }
+        console.log('playerHand ' + numCards(playerHand));
+        while (!isEmpty(dealerHand)){
+            deck.cards.push(drawCard(dealerHand));
+        }
+        deck.shuffle();
+        deck.mount(mainDeckContainer);
+        playerHand.mountHand(playerContainer);
+        dealerHand.mountHand(dealerContainer)
+           
+        startGame();
+        gameStatus();
+        updateGameButtons(inGame);
+    })
 });
 
 function updateGameButtons(inGame){
@@ -89,4 +132,55 @@ function cardVal(valueOfCard){
             break;
     }    
     return val;
+}
+
+function gameStatus(){
+    $('#gameInfo').html('Dealer hand is ' + handVal(dealerHand) + '.<br/>' + 'Your hand is ' + handVal(playerHand) + '.');
+}
+
+function endGame(reason){
+    if (!gameOver){
+        dealers_turn();
+        gameStatus();  
+        if (handVal(dealerHand)<=maxHandVal){
+            reason = 'Dealer has a better hand.';
+        }
+        else if (numCards(dealerHand)===maxHandSize){
+            reason = 'Dealer has a five card hand.';
+        }
+        else{
+            playerWin = true;
+            if (handVal(dealerHand) > maxHandVal){
+                reason = 'Dealer busted.'
+            }
+            else{
+                reason = 'you have a better hand.';
+            }
+            
+        }
+    }
+    gameOutput(reason);
+    updateGameButtons(!inGame);
+}
+
+function gameOutput(reason){
+    var status = playerWin ? 'win' : 'lose';
+    $('#gameInfo').append('<br/>You ' + status + ' because ' + reason);
+}
+
+function dealers_turn(){
+    while (numCards(dealerHand) < maxHandSize && handVal(dealerHand) < handVal(playerHand)){
+        dealerHand.draw(deck);
+        dealerHand.mountHand(dealerContainer,'front');
+    }
+
+}
+
+function startGame(){
+    dealerHand.draw(deck);
+    dealerHand.draw(deck);
+    dealerHand.mountHand(dealerContainer,'front');
+    playerHand.draw(deck);
+    playerHand.draw(deck);
+    playerHand.mountHand(playerContainer,'front');
 }

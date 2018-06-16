@@ -29,17 +29,15 @@ function Hand(){
             card.animateTo({
                 delay: 100 * 2, // wait 1 second + i * 2 ms
                 duration: 500,
-                // x:  (count / 10) * window.innerWidth - window.innerWidth / 2,
                 x:  (count/ length) * window.innerWidth - window.innerWidth/2,
                 
             });
-            console.log(window.innerWidth);
             count+=1;
         });
     }
 };
 
-deck.mount(container);
+deck.mount(mainDeckContainer);
 deck.shuffle();
 
 function numCards(Deck) {return Deck.cards.length;}
@@ -49,6 +47,17 @@ function topCard(Deck) {return Deck.cards[numCards(Deck)-1];}
 function drawCard(Deck) {return Deck.cards.pop();}
 
 function isEmpty(Deck) {return numCards(Deck)===0;}
+
+function addCardsToDeck(gameDeck, hands, containers) {
+    for (let i=0;i<hands.length;i++){
+        while (!isEmpty(hands[i])){
+            gameDeck.cards.push(drawCard(hands[i]));
+        }
+        hands[i].mountHand(containers[i]);
+    }
+        gameDeck.shuffle();
+        gameDeck.mount(mainDeckContainer);   
+}
 
 
 

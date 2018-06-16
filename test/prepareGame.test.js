@@ -73,6 +73,7 @@ describe('Player hand', function(){
         assert.equal(numCards(playerHand1),$('#playerHand').children().length,"The number of cards aren't equal to the DOM.")
     })
     it (' will draw cards onto screen appropriately.', function(){
+        //run test case as full screen and then play with the output values of what the pixels should put etc. etc.
         assert.equal(false,true,'The cards are not guaranteed to always be on screen for a hand.');
     })
 });

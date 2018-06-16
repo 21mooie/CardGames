@@ -21,6 +21,7 @@ function Hand(){
 
     this.mountHand = function(displayContainer,side){ 
         var count = 1;
+        var length = this.cards.length;
         this.cards.forEach( function(card,err) {
             card.mount(displayContainer);
             card.setSide(side);
@@ -28,8 +29,11 @@ function Hand(){
             card.animateTo({
                 delay: 100 * 2, // wait 1 second + i * 2 ms
                 duration: 500,
-                x:  (count / 10) * window.innerWidth - window.innerWidth / 2,
+                // x:  (count / 10) * window.innerWidth - window.innerWidth / 2,
+                x:  (count/ length) * window.innerWidth - window.innerWidth/2,
+                
             });
+            console.log(window.innerWidth);
             count+=1;
         });
     }

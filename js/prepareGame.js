@@ -35,6 +35,11 @@ function Hand(){
             count+=1;
         });
     }
+    this.unmountHand = function(displayContainer){
+        this.cards.forEach( function(card,err) {
+            card.unmount(displayContainer);
+        })
+    }
 };
 
 deck.mount(mainDeckContainer);

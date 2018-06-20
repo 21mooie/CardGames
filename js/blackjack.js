@@ -69,19 +69,23 @@ $(document).ready(function(){
         // var hands = [playerHand,dealerHand];
         // var containers = [playerContainer,dealerContainer]
         // addCardsToDeck(deck,hands,containers);
+        deck.unmount(mainDeckContainer);
+        playerHand.unmountHand(playerContainer);
+        dealerHand.unmountHand(dealerContainer);
         while (!isEmpty(playerHand)){
             deck.cards.push(drawCard(playerHand));
         }
-        console.log('playerHand ' + numCards(playerHand));
+        
         while (!isEmpty(dealerHand)){
             deck.cards.push(drawCard(dealerHand));
         }
         deck.shuffle();
         deck.mount(mainDeckContainer);
-        playerHand.mountHand(playerContainer);
-        dealerHand.mountHand(dealerContainer)
+        
            
         startGame();
+        playerHand.mountHand(playerContainer,'front');
+        dealerHand.mountHand(dealerContainer,'front')
         gameStatus();
         updateGameButtons(inGame);
     })

@@ -72,9 +72,20 @@ describe('Player hand', function(){
         playerHand1.mountHand(playerContainer,'front');
         assert.equal(numCards(playerHand1),$('#playerHand').children().length,"The number of cards aren't equal to the DOM.")
     })
-    it (' will draw cards onto screen appropriately.', function(){
-        //run test case as full screen and then play with the output values of what the pixels should put etc. etc.
-        assert.equal(false,true,'The cards are not guaranteed to always be on screen for a hand.');
+    // it (' will draw cards onto screen appropriately.', function(){
+    //     //run test case as full screen and then play with the output values of what the pixels should put etc. etc.
+    //     assert.equal(false,true,'The cards are not guaranteed to always be on screen for a hand.');
+    // })
+
+    it (' will unmount the cards from the screen.', function (){
+        playerHand1.unmountHand(playerContainer);
+        assert.equal(0,$('#playerHand').children().length,"The number of cards aren't equal to the DOM.")
+    })
+
+    it (' will add the cards from the hand back to the deck.', function (){
+        //addCardsToDeck(...)
+        assert.equal(52,numCards(deck1),'Cards in deck not returned to max.');
+        assert.equal(0,numCards(playerHand1),'Player did not remove cards from hand.');
     })
 });
 

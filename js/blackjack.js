@@ -181,7 +181,7 @@ function startGame(){
     playerHand.draw(deck);
     playerHand.draw(deck);
     playerHand.mountHand(playerContainer,'front');
-
+    playerWin=false;
     
 }
 

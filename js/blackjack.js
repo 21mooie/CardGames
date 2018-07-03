@@ -30,15 +30,8 @@ $(document).ready(function(){
     updateGameButtons(inGame);
     startGame();
     gameStatus();
-
-    if (handVal(dealerHand) === maxHandVal){
-        gameOver=true;
-        endGame('Dealer got blackjack.');
-    }
-
-    if (handVal(playerHand) === maxHandVal){
-        endGame();
-    }
+    checkValsAtGameStart(dealerHand,playerHand);
+    
 
 
     $("#return-button").click(function (){  
@@ -88,6 +81,7 @@ $(document).ready(function(){
         dealerHand.mountHand(dealerContainer,'front')
         gameStatus();
         updateGameButtons(inGame);
+        checkValsAtGameStart(dealerHand,playerHand);
     })
 });
 
@@ -187,4 +181,18 @@ function startGame(){
     playerHand.draw(deck);
     playerHand.draw(deck);
     playerHand.mountHand(playerContainer,'front');
+    playerWin=false;
+    
+}
+
+function checkValsAtGameStart(dealerHand,playerHand){
+    if (handVal(dealerHand) === maxHandVal){
+        gameOver=true;
+        endGame('Dealer got blackjack.');
+    }
+
+    else if (handVal(playerHand) === maxHandVal){
+        endGame();
+    }
+    return gameOver
 }

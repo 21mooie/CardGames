@@ -43,3 +43,25 @@ describe('cardVal ', function(){
         
     })
 })
+
+describe('Hands ', function(){
+    var Deck = {};
+    var dealerHand = new Hand();
+    var hand2 = {cards:[]};
+    before(function(){
+        
+        Deck.cards = [
+            card1 = {rank : 1},
+            card2 = {rank : 10},
+        ];
+        
+        dealerHand.draw(Deck);
+        dealerHand.draw(Deck);
+        
+    })
+    it('are checked for blackjack.', function(){
+        var check = checkValsAtGameStart(dealerHand,hand2);
+        console.log(dealerHand);
+        assert.equal(true,check,'Game is not over when it should be.')
+    })
+})

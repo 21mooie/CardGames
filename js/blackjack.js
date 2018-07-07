@@ -65,13 +65,8 @@ $(document).ready(function(){
         deck.unmount(mainDeckContainer);
         playerHand.unmountHand(playerContainer);
         dealerHand.unmountHand(dealerContainer);
-        while (!isEmpty(playerHand)){
-            deck.cards.push(drawCard(playerHand));
-        }
-        
-        while (!isEmpty(dealerHand)){
-            deck.cards.push(drawCard(dealerHand));
-        }
+        addCardsToDeck(deck,playerHand);
+        addCardsToDeck(deck,dealerHand);
         deck.shuffle();
         deck.mount(mainDeckContainer);
         
@@ -88,12 +83,10 @@ $(document).ready(function(){
 function updateGameButtons(inGame){
     if (inGame){
         $('#new-game-button').hide();
-        // $('#hit-button').show();
         $('#stay-button').show();
     }
     else{
         $('#new-game-button').show();
-        // $('#hit-button').hide();
         $('#stay-button').hide();
     }
 }

@@ -1,7 +1,7 @@
 'use strict;'
 
 var assert = chai.assert;
-describe('Game functions', function() {
+describe('Start Game', function() {
     var hand1;
     var hand2;
     var deck1;
@@ -13,6 +13,7 @@ describe('Game functions', function() {
         hand1 = new Hand();
         hand2 = new Hand();
         deck1 = new Deck();
+        deck1.shuffle();
         hand1Div = document.createElement("div");
         hand1Div.setAttribute("id","container1");
         document.body.appendChild(hand1Div);
@@ -26,6 +27,16 @@ describe('Game functions', function() {
         startGame(hand1, hand2, hand1Container, hand2Container, deck1);
         assert.equal(numCards(hand1),numCards(hand2),'The hands have an uneven number of cards.');
         assert.equal(numCards(deck1),48,'The deck has ' + numCards(deck1) + '.');
+    })
+    it('should make the dealer draw cards.', function() {
+        dealers_turn(hand2, hand1, deck1, hand2Container);
+        assert.isAtLeast(handVal(hand2),handVal(hand1),'Dealer\'s hand is ' + 
+            handVal(hand2) + '. Player\'s hand value is ' + handVal(hand1) + '.'); 
+        assert.isAtMost(numCards(hand2),maxHandSize,'Dealer has ' + numCards(hand2) + ' cards.');
+    }) 
+    it('should test that the status output is correct.', function(){
+        assert.equal('win',gameOutput('win reason',true), 'Output says lose when it should be win.');
+        assert.equal('lose',gameOutput('win reason',false), 'Output says win when it should be lose.');
     })
 })
 

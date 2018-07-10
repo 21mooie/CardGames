@@ -131,7 +131,7 @@ function gameStatus(){
 
 function endGame(reason){
     if (!gameOver){
-        dealers_turn();
+        dealers_turn(dealerHand, playerHand, deck, dealerContainer);
         gameStatus();  
         if (handVal(dealerHand)<=maxHandVal){
             reason = 'Dealer has a better hand.';
@@ -150,16 +150,17 @@ function endGame(reason){
             
         }
     }
-    gameOutput(reason);
+    gameOutput(reason, playerWin);
     updateGameButtons(!inGame);
 }
 
-function gameOutput(reason){
-    var status = playerWin ? 'win' : 'lose';
+function gameOutput(reason, winStatus){
+    var status = winStatus ? 'win' : 'lose';
     $('#gameInfo').append('<br/>You ' + status + ' because ' + reason);
+    return status;
 }
 
-function dealers_turn(){
+function dealers_turn(dealerHand, playerHand, deck, dealerContainer){
     while (numCards(dealerHand) < maxHandSize && handVal(dealerHand) < handVal(playerHand)){
         dealerHand.draw(deck);
         dealerHand.mountHand(dealerContainer,'front');

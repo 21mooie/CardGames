@@ -28,7 +28,7 @@ var inGame=true;
 
 $(document).ready(function(){
     updateGameButtons(inGame);
-    startGame();
+    startGame(dealerHand, playerHand, dealerContainer, playerContainer, deck);
     gameStatus();
     checkValsAtGameStart(dealerHand,playerHand);
     
@@ -71,7 +71,7 @@ $(document).ready(function(){
         deck.mount(mainDeckContainer);
         
            
-        startGame();
+        startGame(dealerHand, playerHand, dealerContainer, playerContainer,deck);
         playerHand.mountHand(playerContainer,'front');
         dealerHand.mountHand(dealerContainer,'front')
         gameStatus();
@@ -167,7 +167,7 @@ function dealers_turn(){
 
 }
 
-function startGame(){
+function startGame(dealerHand, playerHand, dealerContainer, playerContainer,deck){
     dealerHand.draw(deck);
     dealerHand.draw(deck);
     dealerHand.mountHand(dealerContainer,'front');

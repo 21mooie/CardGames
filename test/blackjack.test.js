@@ -1,6 +1,35 @@
 'use strict;'
 
 var assert = chai.assert;
+describe('Game functions', function() {
+    var hand1;
+    var hand2;
+    var deck1;
+    var hand1Div;
+    var hand1Container;
+    var hand2Div;
+    var hand2Container;
+    before(function(){
+        hand1 = new Hand();
+        hand2 = new Hand();
+        deck1 = new Deck();
+        hand1Div = document.createElement("div");
+        hand1Div.setAttribute("id","container1");
+        document.body.appendChild(hand1Div);
+        hand1Container = document.getElementById("container1");
+        hand2Div = document.createElement("div");
+        hand2Div.setAttribute("id","container2");
+        document.body.appendChild(hand2Div);
+        hand2Container = document.getElementById("container2");
+    })
+    it('should start the game appropriately.', function(){
+        startGame(hand1, hand2, hand1Container, hand2Container, deck1);
+        assert.equal(numCards(hand1),numCards(hand2),'The hands have an uneven number of cards.');
+        assert.equal(numCards(deck1),48,'The deck has ' + numCards(deck1) + '.');
+    })
+})
+
+
 describe('UpdateGameButtons', function (){
     it(' should change on screen buttons once game starts.', function(){
         updateGameButtons(true);
@@ -44,6 +73,8 @@ describe('cardVal ', function(){
     })
 })
 
+
+
 describe('Hands ', function(){
     var Deck = {};
     var dealerHand = new Hand();
@@ -60,8 +91,10 @@ describe('Hands ', function(){
         
     })
     it('are checked for blackjack.', function(){
-        var check = checkValsAtGameStart(dealerHand,hand2);
-        console.log(dealerHand);
-        assert.equal(true,check,'Game is not over when it should be.')
+        assert.equal(false,checkValsAtGameStart(hand2, dealerHand),'Game is over when it shouldn\'t be.');
+        assert.equal(true,checkValsAtGameStart(dealerHand,hand2),'Game is not over when it should be.');
+        //test case where Game is over when it should be
+        
     })
 })
+

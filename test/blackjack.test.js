@@ -38,6 +38,10 @@ describe('Start Game', function() {
         assert.equal('win',gameOutput('win reason',true), 'Output says lose when it should be win.');
         assert.equal('lose',gameOutput('win reason',false), 'Output says win when it should be lose.');
     })
+
+    it('should test end game conditions.', function() {
+        assert.equal(true,false,'Test this by using combo of gameOver, playerWin, etc.');
+    })
 })
 
 

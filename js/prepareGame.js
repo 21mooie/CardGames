@@ -1,4 +1,6 @@
 'use strict;'
+import {$,jQuery} from './jquery-3.3.1.js'
+import Deck from '../node_modules/deck-of-cards/dist/deck.min.js'
 
 var deck = Deck();
     playerHand = new Hand();
@@ -52,17 +54,6 @@ function topCard(Deck) {return Deck.cards[numCards(Deck)-1];}
 function drawCard(Deck) {return Deck.cards.pop();}
 
 function isEmpty(Deck) {return numCards(Deck)===0;}
-
-function addCardsToDeck(gameDeck, hands, containers) {
-    for (let i=0;i<hands.length;i++){
-        while (!isEmpty(hands[i])){
-            gameDeck.cards.push(drawCard(hands[i]));
-        }
-        hands[i].mountHand(containers[i]);
-    }
-        gameDeck.shuffle();
-        gameDeck.mount(mainDeckContainer);   
-}
 
 function addCardsToDeck(Deck, Hand){
     while (!isEmpty(Hand)){

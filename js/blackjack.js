@@ -28,17 +28,10 @@ var inGame=true;
 
 $(document).ready(function(){
     updateGameButtons(inGame);
-    startGame();
+    startGame(dealerHand, playerHand, dealerContainer, playerContainer, deck);
     gameStatus();
-
-    if (handVal(dealerHand) === maxHandVal){
-        gameOver=true;
-        endGame('Dealer got blackjack.');
-    }
-
-    if (handVal(playerHand) === maxHandVal){
-        endGame();
-    }
+    checkValsAtGameStart(dealerHand,playerHand);
+    
 
 
     $("#return-button").click(function (){  
@@ -72,34 +65,28 @@ $(document).ready(function(){
         deck.unmount(mainDeckContainer);
         playerHand.unmountHand(playerContainer);
         dealerHand.unmountHand(dealerContainer);
-        while (!isEmpty(playerHand)){
-            deck.cards.push(drawCard(playerHand));
-        }
-        
-        while (!isEmpty(dealerHand)){
-            deck.cards.push(drawCard(dealerHand));
-        }
+        addCardsToDeck(deck,playerHand);
+        addCardsToDeck(deck,dealerHand);
         deck.shuffle();
         deck.mount(mainDeckContainer);
         
            
-        startGame();
+        startGame(dealerHand, playerHand, dealerContainer, playerContainer,deck);
         playerHand.mountHand(playerContainer,'front');
         dealerHand.mountHand(dealerContainer,'front')
         gameStatus();
         updateGameButtons(inGame);
+        checkValsAtGameStart(dealerHand,playerHand);
     })
 });
 
 function updateGameButtons(inGame){
     if (inGame){
         $('#new-game-button').hide();
-        // $('#hit-button').show();
         $('#stay-button').show();
     }
     else{
         $('#new-game-button').show();
-        // $('#hit-button').hide();
         $('#stay-button').hide();
     }
 }
@@ -144,7 +131,7 @@ function gameStatus(){
 
 function endGame(reason){
     if (!gameOver){
-        dealers_turn();
+        dealers_turn(dealerHand, playerHand, deck, dealerContainer);
         gameStatus();  
         if (handVal(dealerHand)<=maxHandVal){
             reason = 'Dealer has a better hand.';
@@ -163,16 +150,17 @@ function endGame(reason){
             
         }
     }
-    gameOutput(reason);
+    gameOutput(reason, playerWin);
     updateGameButtons(!inGame);
 }
 
-function gameOutput(reason){
-    var status = playerWin ? 'win' : 'lose';
+function gameOutput(reason, winStatus){
+    var status = winStatus ? 'win' : 'lose';
     $('#gameInfo').append('<br/>You ' + status + ' because ' + reason);
+    return status;
 }
 
-function dealers_turn(){
+function dealers_turn(dealerHand, playerHand, deck, dealerContainer){
     while (numCards(dealerHand) < maxHandSize && handVal(dealerHand) < handVal(playerHand)){
         dealerHand.draw(deck);
         dealerHand.mountHand(dealerContainer,'front');
@@ -180,11 +168,25 @@ function dealers_turn(){
 
 }
 
-function startGame(){
+function startGame(dealerHand, playerHand, dealerContainer, playerContainer,deck){
     dealerHand.draw(deck);
     dealerHand.draw(deck);
     dealerHand.mountHand(dealerContainer,'front');
     playerHand.draw(deck);
     playerHand.draw(deck);
     playerHand.mountHand(playerContainer,'front');
+    playerWin=false;
+    
+}
+
+function checkValsAtGameStart(dealerHand,playerHand){
+    if (handVal(dealerHand) === maxHandVal){
+        gameOver=true;
+        endGame('Dealer got blackjack.');
+    }
+
+    else if (handVal(playerHand) === maxHandVal){
+        endGame();
+    }
+    return gameOver
 }

@@ -56,18 +56,7 @@ describe('Player hand', function(){
         assert.equal(numCards(deck1),51,"Deck size did not reduce by card drawn");
         assert.notEqual(topCard(deck1),topCard(playerHand1),"Top card was not removed from deck for draw");
     });
-    it(' will not be able to add card when deck is empty.', function () {
-        var handCount = numCards(playerHand1);
-        while(numCards(deck1)>0){
-            drawCard(deck1);
-        }
-        var status = playerHand1.draw(deck1);
-
-        assert.equal(status,false,'Draw occurred when it should not have.');
-        assert.equal(numCards(deck1),0,"Deck is not empty as it should.");
-        assert.equal(handCount,numCards(playerHand1),"Hand changed size after draw.");
-        
-    })
+    
     it (' will be able to mount cards to the screen.', function(){
         playerHand1.mountHand(playerContainer,'front');
         assert.equal(numCards(playerHand1),$('#playerHand').children().length,"The number of cards aren't equal to the DOM.")
@@ -83,9 +72,22 @@ describe('Player hand', function(){
     })
 
     it (' will add the cards from the hand back to the deck.', function (){
-        //addCardsToDeck(...)
+        addCardsToDeck(deck1,playerHand1)
         assert.equal(52,numCards(deck1),'Cards in deck not returned to max.');
         assert.equal(0,numCards(playerHand1),'Player did not remove cards from hand.');
+    })
+
+    it(' will not be able to add card when deck is empty.', function () {
+        var handCount = numCards(playerHand1);
+        while(numCards(deck1)>0){
+            drawCard(deck1);
+        }
+        var status = playerHand1.draw(deck1);
+
+        assert.equal(status,false,'Draw occurred when it should not have.');
+        assert.equal(numCards(deck1),0,"Deck is not empty as it should.");
+        assert.equal(handCount,numCards(playerHand1),"Hand changed size after draw.");
+        
     })
 });
 

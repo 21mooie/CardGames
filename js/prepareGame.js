@@ -64,6 +64,11 @@ function addCardsToDeck(gameDeck, hands, containers) {
         gameDeck.mount(mainDeckContainer);   
 }
 
+function addCardsToDeck(Deck, Hand){
+    while (!isEmpty(Hand)){
+        Deck.cards.push(drawCard(Hand));
+    }
+}
 
 
 

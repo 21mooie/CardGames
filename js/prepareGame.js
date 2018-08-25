@@ -1,6 +1,5 @@
 'use strict;'
-import {$,jQuery} from './jquery-3.3.1.js'
-import Deck from '../node_modules/deck-of-cards/dist/deck.min.js'
+// import Deck from '../node_modules/deck-of-cards/dist/deck.min.js'
 
 var deck = Deck();
     playerHand = new Hand();
@@ -62,4 +61,5 @@ function addCardsToDeck(Deck, Hand){
 }
 
 
-
+// export { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+//             numCards, topCard, drawCard, isEmpty, addCardsToDeck}

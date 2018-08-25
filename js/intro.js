@@ -1,5 +1,6 @@
 'use strict;'
-
+// import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+//     numCards, topCard, drawCard, isEmpty, addCardsToDeck} from './prepareGame'
 var card;
 for (let i=0;i<numCards(deck);i++){
     card = deck.cards[i];

@@ -1,5 +1,4 @@
 'use strict;'
-// import Deck from '../node_modules/deck-of-cards/dist/deck.min.js'
 
 var deck = Deck();
 var playerHand = new Hand();

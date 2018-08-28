@@ -2,11 +2,11 @@
 // import Deck from '../node_modules/deck-of-cards/dist/deck.min.js'
 
 var deck = Deck();
-    playerHand = new Hand();
-    dealerHand = new Hand();
-    mainDeckContainer = document.getElementById('container');
-    playerContainer = document.getElementById('playerHand');
-    dealerContainer = document.getElementById('dealerHand');
+var playerHand = new Hand();
+var dealerHand = new Hand();
+var mainDeckContainer = document.getElementById('container');
+var playerContainer = document.getElementById('playerHand');
+var dealerContainer = document.getElementById('dealerHand');
 
 function Hand(){
     this.cards = [];
@@ -61,5 +61,5 @@ function addCardsToDeck(Deck, Hand){
 }
 
 
-// export { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
-//             numCards, topCard, drawCard, isEmpty, addCardsToDeck}
+export { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+            numCards, topCard, drawCard, isEmpty, addCardsToDeck}

@@ -19,12 +19,15 @@
 
 'use strict;'
 
+import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+    numCards, topCard, drawCard, isEmpty, addCardsToDeck} from './prepareGame'
+
 const maxHandSize = 5;
-      maxHandVal = 21;
+const maxHandVal = 21;
 
 var inGame=true;
-    gameOver=false;
-    playerWin=false;
+var gameOver=false;
+var playerWin=false;
 
 $(document).ready(function(){
     updateGameButtons(inGame);

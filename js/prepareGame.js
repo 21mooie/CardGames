@@ -1,11 +1,13 @@
 'use strict;'
 
+import Deck from 'deck-of-cards';
+
 var deck = Deck();
-    playerHand = new Hand();
-    dealerHand = new Hand();
-    mainDeckContainer = document.getElementById('container');
-    playerContainer = document.getElementById('playerHand');
-    dealerContainer = document.getElementById('dealerHand');
+var playerHand = new Hand();
+var dealerHand = new Hand();
+var mainDeckContainer = document.getElementById('container');
+var playerContainer = document.getElementById('playerHand');
+var dealerContainer = document.getElementById('dealerHand');
 
 function Hand(){
     this.cards = [];
@@ -53,17 +55,12 @@ function drawCard(Deck) {return Deck.cards.pop();}
 
 function isEmpty(Deck) {return numCards(Deck)===0;}
 
-function addCardsToDeck(gameDeck, hands, containers) {
-    for (let i=0;i<hands.length;i++){
-        while (!isEmpty(hands[i])){
-            gameDeck.cards.push(drawCard(hands[i]));
-        }
-        hands[i].mountHand(containers[i]);
+function addCardsToDeck(Deck, Hand){
+    while (!isEmpty(Hand)){
+        Deck.cards.push(drawCard(Hand));
     }
-        gameDeck.shuffle();
-        gameDeck.mount(mainDeckContainer);   
 }
 
 
-
-
+export { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+            numCards, topCard, drawCard, isEmpty, addCardsToDeck}

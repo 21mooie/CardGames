@@ -19,16 +19,19 @@
 
 'use strict;'
 
+import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+    numCards, topCard, drawCard, isEmpty, addCardsToDeck} from './prepareGame'
+
 const maxHandSize = 5;
-      maxHandVal = 21;
+const maxHandVal = 21;
 
 var inGame=true;
-    gameOver=false;
-    playerWin=false;
+var gameOver=false;
+var playerWin=false;
 
 $(document).ready(function(){
     updateGameButtons(inGame);
-    startGame();
+    startGame(dealerHand, playerHand, dealerContainer, playerContainer, deck);
     gameStatus();
     checkValsAtGameStart(dealerHand,playerHand);
     
@@ -65,18 +68,13 @@ $(document).ready(function(){
         deck.unmount(mainDeckContainer);
         playerHand.unmountHand(playerContainer);
         dealerHand.unmountHand(dealerContainer);
-        while (!isEmpty(playerHand)){
-            deck.cards.push(drawCard(playerHand));
-        }
-        
-        while (!isEmpty(dealerHand)){
-            deck.cards.push(drawCard(dealerHand));
-        }
+        addCardsToDeck(deck,playerHand);
+        addCardsToDeck(deck,dealerHand);
         deck.shuffle();
         deck.mount(mainDeckContainer);
         
            
-        startGame();
+        startGame(dealerHand, playerHand, dealerContainer, playerContainer,deck);
         playerHand.mountHand(playerContainer,'front');
         dealerHand.mountHand(dealerContainer,'front')
         gameStatus();
@@ -88,12 +86,10 @@ $(document).ready(function(){
 function updateGameButtons(inGame){
     if (inGame){
         $('#new-game-button').hide();
-        // $('#hit-button').show();
         $('#stay-button').show();
     }
     else{
         $('#new-game-button').show();
-        // $('#hit-button').hide();
         $('#stay-button').hide();
     }
 }
@@ -138,7 +134,7 @@ function gameStatus(){
 
 function endGame(reason){
     if (!gameOver){
-        dealers_turn();
+        dealers_turn(dealerHand, playerHand, deck, dealerContainer);
         gameStatus();  
         if (handVal(dealerHand)<=maxHandVal){
             reason = 'Dealer has a better hand.';
@@ -157,16 +153,17 @@ function endGame(reason){
             
         }
     }
-    gameOutput(reason);
+    gameOutput(reason, playerWin);
     updateGameButtons(!inGame);
 }
 
-function gameOutput(reason){
-    var status = playerWin ? 'win' : 'lose';
+function gameOutput(reason, winStatus){
+    var status = winStatus ? 'win' : 'lose';
     $('#gameInfo').append('<br/>You ' + status + ' because ' + reason);
+    return status;
 }
 
-function dealers_turn(){
+function dealers_turn(dealerHand, playerHand, deck, dealerContainer){
     while (numCards(dealerHand) < maxHandSize && handVal(dealerHand) < handVal(playerHand)){
         dealerHand.draw(deck);
         dealerHand.mountHand(dealerContainer,'front');
@@ -174,7 +171,7 @@ function dealers_turn(){
 
 }
 
-function startGame(){
+function startGame(dealerHand, playerHand, dealerContainer, playerContainer,deck){
     dealerHand.draw(deck);
     dealerHand.draw(deck);
     dealerHand.mountHand(dealerContainer,'front');

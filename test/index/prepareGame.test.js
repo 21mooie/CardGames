@@ -1,5 +1,8 @@
 'use strict;'
 
+import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+    numCards, topCard, drawCard, isEmpty, addCardsToDeck} from '../../js/prepareGame'
+
 var assert = chai.assert;
 
 describe('Deck', function(){

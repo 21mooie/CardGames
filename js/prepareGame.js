@@ -1,5 +1,7 @@
 'use strict;'
 
+import Deck from 'deck-of-cards';
+
 var deck = Deck();
 var playerHand = new Hand();
 var dealerHand = new Hand();

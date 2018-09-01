@@ -1,5 +1,7 @@
 'use strict;'
 
+import '../../js/blackjack'
+
 var assert = chai.assert;
 describe('Start Game', function() {
     var hand1;

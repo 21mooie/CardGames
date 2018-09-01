@@ -10,12 +10,13 @@
     <script src="../../node_modules/mocha/mocha.js"></script>
     <script src="../../node_modules/chai/chai.js"></script>
     <script>mocha.setup('bdd')</script>
-
-    <!-- load code you want to test here -->
     <script src="../../js/jquery-3.3.1.js"></script>
     <script src="../../node_modules/deck-of-cards/dist/deck.js"></script>
 
-    <script src="../../js/prepareGame.js"></script>
+    <!-- load code you want to test here -->
+    
+
+    <!-- <script src="../../js/prepareGame.js"></script> -->
     
     <!-- load your test files here -->
 
@@ -26,8 +27,9 @@
     <button id="new-game-button">New Game!</button>
     <button id="stay-button">Stay</button>
     <button id="return-button"> <a href="../../dist/index.html">Return to Game Select</a></button>
-    <script src="../../js/blackjack.js"></script>
-    <script src="./blackjack.test.js"></script>
+    <!-- <script src="../../js/blackjack.js"></script>
+    <script src="./blackjack.test.js"></script> -->
+    <script src='../test_bundles/blackjackTest.bundle.js'></script>
     
     <script>
       mocha.run();

@@ -1,6 +1,6 @@
 'use strict;'
 
-import Deck from 'deck-of-cards';
+import { Deck } from 'deck-of-cards';
 
 var deck = Deck();
 var playerHand = new Hand();

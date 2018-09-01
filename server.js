@@ -16,7 +16,7 @@ app.get('/blackjack.html', function (req, res) {
 });
 
 app.get('/index.html', function (req,res){
-    res.sendFile(path.join(__dirname + '/dist/' + 'index.html'));
+    res.redirect('/');
 })
 
 app.listen(process.env.PORT || 8080, function(){

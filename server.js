@@ -8,6 +8,10 @@ app.use('/js', express.static(__dirname + '/dist/'));
 // app.use('/dist/bundles',express.static(__dirname + '/dist/bundles'))
 
 app.get('/', function (req, res) {
+    res.redirect('/dist');
+});
+
+app.get('/dist', function (req, res) {
     res.sendFile(path.join(__dirname + '/dist/' + 'index.html'));
 });
 

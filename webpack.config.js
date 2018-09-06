@@ -21,7 +21,7 @@ console.log('This is a ' + env_status + ' build.');
 if (isDevelopment){
   baseConfig.mode = 'development';
   baseConfig.devServer = {
-    // contentBase: path.resolve(__dirname, 'dist/'),
+    // contentBase: [path.join(__dirname, 'dist'),path.join(__dirname,'css'),path.join(__dirname,'node_modules')]
     // publicPath : '/dist/bundles'
   }
 }

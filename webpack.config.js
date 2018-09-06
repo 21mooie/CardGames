@@ -1,6 +1,10 @@
 const path = require('path');
+const isDevelopment = process.env.NODE_ENV === 'development';
+var env_status = isDevelopment ? 'development' : 'production';
+console.log('This is a ' + env_status + ' build.');
 
-module.exports = {
+ let baseConfig = {
+  mode: 'production',
   entry: {
     intro: './js/intro.js',
     blackjack:'./js/blackjack.js'
@@ -13,3 +17,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/bundles/')
   }
 };
+
+if (isDevelopment){
+  baseConfig.mode = 'development';
+  baseConfig.devServer = {
+    // contentBase: path.resolve(__dirname, 'dist/'),
+    // publicPath : '/dist/bundles'
+  }
+}
+module.exports = baseConfig;

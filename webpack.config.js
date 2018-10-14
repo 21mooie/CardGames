@@ -9,7 +9,6 @@ console.log('This is a ' + env_status + ' build.');
     intro: './js/intro.js',
     blackjack:'./js/blackjack.js',
     prepareGameTest: './test/index/prepareGame.test.js',
-    introTest: './test/index/intro.test.js',
     blackjackTest: './test/blackjack/blackjack.test.js'
   },
   output: {

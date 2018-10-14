@@ -7,15 +7,30 @@ console.log('This is a ' + env_status + ' build.');
   mode: 'production',
   entry: {
     intro: './js/intro.js',
-    blackjack:'./js/blackjack.js'
-    // prepareGameTest: './test/index/prepareGame.test.js',
-    // introTest: './test/index/intro.test.js',
-    // blackjackTest: './test/blackjack/blackjack.test.js'
+    blackjack:'./js/blackjack.js',
+    prepareGameTest: './test/index/prepareGame.test.js',
+    introTest: './test/index/intro.test.js',
+    blackjackTest: './test/blackjack/blackjack.test.js'
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist/bundles/')
-  }
+  },
+  module: {
+    rules: [
+        {
+            test: /\.js$/,
+            use: {
+              loader: 'babel-loader'
+            }
+            
+        }
+    ]
+  },
+  stats: {
+    colors: true
+  },
+  devtool: 'source-map'
 };
 
 if (isDevelopment){

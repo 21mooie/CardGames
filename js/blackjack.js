@@ -193,3 +193,6 @@ function checkValsAtGameStart(dealerHand,playerHand){
     }
     return gameOver
 }
+
+export {startGame, checkValsAtGameStart, dealers_turn, gameOutput, endGame, gameStatus, 
+    cardVal, handVal, updateGameButtons, maxHandSize, inGame, gameOver, playerWin}

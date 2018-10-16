@@ -39,4 +39,5 @@ Thumbs.db
 node_modules
 package-lock.json
 *bundles/
-/test_bundles/
+/test_bundles/*
+/example/*

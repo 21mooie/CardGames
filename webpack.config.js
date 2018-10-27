@@ -28,8 +28,7 @@ console.log('This is a ' + env_status + ' build.');
   },
   stats: {
     colors: true
-  },
-  devtool: 'source-map'
+  }
 };
 
 if (isDevelopment){

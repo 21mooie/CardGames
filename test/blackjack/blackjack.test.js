@@ -1,6 +1,10 @@
 'use strict;'
 
-import '../../js/blackjack'
+import {startGame, checkValsAtGameStart, dealers_turn, gameOutput, 
+    endGame, gameStatus, cardVal, handVal, updateGameButtons} from '../../js/blackjack'
+import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
+    numCards, topCard, drawCard, isEmpty, addCardsToDeck} from '../../js/prepareGame'
+import '../../js/blackjack.js'
 
 var assert = chai.assert;
 describe('Start Game', function() {
@@ -34,7 +38,7 @@ describe('Start Game', function() {
         dealers_turn(hand2, hand1, deck1, hand2Container);
         assert.isAtLeast(handVal(hand2),handVal(hand1),'Dealer\'s hand is ' + 
             handVal(hand2) + '. Player\'s hand value is ' + handVal(hand1) + '.'); 
-        assert.isAtMost(numCards(hand2),maxHandSize,'Dealer has ' + numCards(hand2) + ' cards.');
+        assert.isAtMost(numCards(hand2),5,'Dealer has ' + numCards(hand2) + ' cards.');
     }) 
     it('should test that the status output is correct.', function(){
         assert.equal('win',gameOutput('win reason',true), 'Output says lose when it should be win.');
@@ -92,8 +96,6 @@ describe('cardVal ', function(){
     })
 })
 
-
-
 describe('Hands ', function(){
     var Deck = {};
     var dealerHand = new Hand();
@@ -101,8 +103,8 @@ describe('Hands ', function(){
     before(function(){
         
         Deck.cards = [
-            card1 = {rank : 1},
-            card2 = {rank : 10},
+            {rank : 1},
+            {rank : 10},
         ];
         
         dealerHand.draw(Deck);

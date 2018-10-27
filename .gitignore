@@ -39,3 +39,6 @@ Thumbs.db
 node_modules
 package-lock.json
 *bundles/
+/test_bundles/*
+dist/css/example/*
+dist/css/example/faces/*

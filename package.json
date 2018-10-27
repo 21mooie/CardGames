@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test_prepareGame": "open ./test/index/index.testRunner.html",
     "test_blackjack": "open ./test/blackjack/blackjack.testRunner.html",
-    "heroku-prebuild": "npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",

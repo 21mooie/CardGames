@@ -12,7 +12,7 @@
     "test_prepareGame": "open ./test/index/index.testRunner.html",
     "test_blackjack": "open ./test/blackjack/blackjack.testRunner.html",
     "heroku-postbuild": "npm run build",
-    "moveTestsBundles": "mv dist/bundles/blackjackTest.bundle.js test/test_bundles/blackjackTest.bundle.js && mv dist/bundles/prepareGameTest.bundle.js test/test_bundles/prepareGameTest.bundle.js"
+    "moveTestsBundles": "mv dist/bundles/*Test.bundle.js test/test_bundles/"
   },
   "repository": {
     "type": "git",

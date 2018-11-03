@@ -20,7 +20,7 @@
 'use strict;'
 
 import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
-    numCards, topCard, drawCard, isEmpty, addCardsToDeck, gameResult, setUpGameResult} from './prepareGame'
+    numCards, topCard, drawCard, isEmpty, addCardsToDeck, gameResult, resultOfGame, setUpGameResult, resetGameResult} from './prepareGame'
 
 const maxHandSize = 5;
 const maxHandVal = 21;
@@ -61,6 +61,7 @@ $(document).ready(function(){
 
     $('#new-game-button').click(function (){
         gameOver = false;
+        resetGameResult();
         deck.unmount(mainDeckContainer);
         playerHand.unmountHand(playerContainer);
         dealerHand.unmountHand(dealerContainer);
@@ -154,6 +155,7 @@ function endGame(reason){
 function gameOutput(reason, winStatus){
     var status = winStatus ? 'win' : 'lose';
     $('#gameInfo').append('<br/>You ' + status + ' because ' + reason);
+    setUpGameResult(winStatus);
     return status;
 }
 

@@ -9,11 +9,21 @@ var mainDeckContainer = document.getElementById('container');
 var playerContainer = document.getElementById('playerHand');
 var dealerContainer = document.getElementById('dealerHand');
 var gameResult = document.getElementById('gameResult');
+var resultOfGame = document.createElement('div');
 
-function setUpGameResult() {
-    var resultOfGame = document.createElement('div');
+function setUpGameResult(statusBoolean) {
     resultOfGame.setAttribute('id','gameResult');
     document.body.appendChild(resultOfGame);
+    showPlayerEndGameStatus(statusBoolean);
+}
+
+function showPlayerEndGameStatus(statusBoolean) {
+    
+    statusBoolean ? $('#gameResult').html('You Win!') : $('#gameResult').html('You Lose :(');
+}
+
+function resetGameResult(){
+    resultOfGame.innerHTML = '';
 }
 
 function Hand(){
@@ -70,4 +80,4 @@ function addCardsToDeck(Deck, Hand){
 
 
 export { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
-            numCards, topCard, drawCard, isEmpty, addCardsToDeck, gameResult, setUpGameResult}
+            numCards, topCard, drawCard, isEmpty, addCardsToDeck, gameResult, resultOfGame, setUpGameResult, resetGameResult}

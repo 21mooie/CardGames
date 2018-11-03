@@ -20,7 +20,7 @@
 'use strict;'
 
 import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
-    numCards, topCard, drawCard, isEmpty, addCardsToDeck} from './prepareGame'
+    numCards, topCard, drawCard, isEmpty, addCardsToDeck, gameResult, setUpGameResult} from './prepareGame'
 
 const maxHandSize = 5;
 const maxHandVal = 21;
@@ -35,7 +35,6 @@ $(document).ready(function(){
     gameStatus();
     checkValsAtGameStart(dealerHand,playerHand);
     
-
 
     $("#return-button").click(function (){  
         gameOver=true;
@@ -62,9 +61,6 @@ $(document).ready(function(){
 
     $('#new-game-button').click(function (){
         gameOver = false;
-        // var hands = [playerHand,dealerHand];
-        // var containers = [playerContainer,dealerContainer]
-        // addCardsToDeck(deck,hands,containers);
         deck.unmount(mainDeckContainer);
         playerHand.unmountHand(playerContainer);
         dealerHand.unmountHand(dealerContainer);
@@ -72,8 +68,6 @@ $(document).ready(function(){
         addCardsToDeck(deck,dealerHand);
         deck.shuffle();
         deck.mount(mainDeckContainer);
-        
-           
         startGame(dealerHand, playerHand, dealerContainer, playerContainer,deck);
         playerHand.mountHand(playerContainer,'front');
         dealerHand.mountHand(dealerContainer,'front')

@@ -8,6 +8,13 @@ var dealerHand = new Hand();
 var mainDeckContainer = document.getElementById('container');
 var playerContainer = document.getElementById('playerHand');
 var dealerContainer = document.getElementById('dealerHand');
+var gameResult = document.getElementById('gameResult');
+
+function setUpGameResult() {
+    var resultOfGame = document.createElement('div');
+    resultOfGame.setAttribute('id','gameResult');
+    document.body.appendChild(resultOfGame);
+}
 
 function Hand(){
     this.cards = [];
@@ -63,4 +70,4 @@ function addCardsToDeck(Deck, Hand){
 
 
 export { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
-            numCards, topCard, drawCard, isEmpty, addCardsToDeck}
+            numCards, topCard, drawCard, isEmpty, addCardsToDeck, gameResult, setUpGameResult}

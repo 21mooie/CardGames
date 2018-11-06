@@ -6,12 +6,13 @@
   "scripts": {
     "start": "node server.js",
     "local": "nodemon server.js",
-    "dev": "cross-env NODE_ENV='development' nodemon -w webpack.config.js -x webpack-dev-server -- --open",
-    "build": "webpack --config webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV='development' npm run build && nodemon -w webpack.config.js -x webpack-dev-server -- --open",
+    "build": "webpack --config webpack.config.js && npm run moveTestsBundles",
+    "test": "npm run test_prepareGame && npm run test_blackjack",
     "test_prepareGame": "open ./test/index/index.testRunner.html",
     "test_blackjack": "open ./test/blackjack/blackjack.testRunner.html",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "moveTestsBundles": "mv dist/bundles/*Test.bundle.js test/test_bundles/"
   },
   "repository": {
     "type": "git",

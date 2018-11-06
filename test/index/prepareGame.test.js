@@ -1,7 +1,7 @@
 'use strict;'
 
 import { deck, playerHand, playerContainer, dealerHand, dealerContainer, mainDeckContainer, Hand,
-    numCards, topCard, drawCard, isEmpty, addCardsToDeck} from '../../js/prepareGame'
+    numCards, topCard, drawCard, isEmpty, addCardsToDeck, gameResult, setUpGameResult} from '../../js/prepareGame'
 
 var assert = chai.assert;
 
@@ -98,5 +98,13 @@ describe('Player hand', function(){
 describe('Dealer hand', function(){
     it(' should be empty.', function(){
         assert.equal(numCards(dealerHand),0,'delearHand has cards within it.');
+    });
+});
+
+describe('Game ', () => {
+    it('should add a div to show the result of game.', ()=> {
+        setUpGameResult();
+        let expectedDiv = document.getElementById('gameResult');
+        assert.exists(expectedDiv,'Cannot find div with id gameResult.');
     });
 });
